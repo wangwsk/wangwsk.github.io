@@ -281,6 +281,548 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://3.112.15.176:4000/2019/09/14/mybatis简述/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wangshenkai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gakki-kk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/14/mybatis简述/" itemprop="url">mybatis简述</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T14:29:15+00:00">
+                2019-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>mybatis简述</strong></p>
+<ul>
+<li><p>几个问题</p>
+<ul>
+<li>什么是Java反射,Java反射有几种实现方式?</li>
+<li>什么是动态代理?具体实现动态代理的方式是什么?</li>
+</ul>
+</li>
+<li><p>mybatis的核心组件有哪些?</p>
+<ul>
+<li>SqlSessionFactoryBuilder</li>
+<li>SqlSessionFactory</li>
+<li>SqlSession</li>
+<li>Mapper</li>
+</ul>
+</li>
+<li><p>怎样实现mybatis的映射器</p>
+<ul>
+<li>基于注解实现</li>
+<li>xml实现</li>
+</ul>
+</li>
+<li><p>mybatis的生命周期是怎样的?</p>
+</li>
+<li><p>mybatis配置中需要或者可以配置哪些属性</p>
+</li>
+<li><p>什么是mybatis的级联</p>
+</li>
+<li><p>什么是mybatis的缓存</p>
+<ul>
+<li>开启一级缓存<code>sqlsession</code>,在当前<code>sqlsession</code>中,执行相同查询不要要再次执行sql获取结果集,不同sqlsession中仍然需要</li>
+<li>开启二级缓存<code>sqlsessionfactory</code>,同属于一个<code>sqlsessionfactory</code>的<code>sqlsession</code>执行查询中不需要再次执行sql获取结果集,需要注意,一级缓存默认开启,二级缓存打开则需要<code>&lt;cached&gt;</code>进行配置,一级缓存不需要pojo实现系列化接口,二级缓存需要pojo实现序列化接口</li>
+</ul>
+</li>
+<li><p>怎样开启自定义缓存</p>
+<ul>
+<li>开启自定义缓存,实现类需要实现接口mybatis的接口<code>org.apache.ibatis.cacheCache.Cache</code>接口<ul>
+<li>获取缓存 <code>String getId()</code></li>
+<li>保存对象 <code>void putObject(Object key,Object value)</code></li>
+<li>获取缓存数据 <code>Object getObject()</code></li>
+<li>删除缓存key为键 <code>Object removeObject(Object key)</code></li>
+<li>清除缓存 <code>void clear()</code></li>
+<li>获取读写锁,需要考虑线程场景 <code>getReadWriteLock()</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>mybatis框架的运行过程是怎样的</p>
+<ul>
+<li>读取配置文件缓存到<code>configuration</code>对象中,用来创建<code>SqlSessionFactory</code></li>
+<li><code>sqlsession</code>的执行过程</li>
+</ul>
+</li>
+<li><p>SqlsessionFactoryBuilder是怎样构建<code>SqlsessionFactory</code>的</p>
+<ul>
+<li>通过<code>org.apache.ibatis.builder.xml.XmlConfigBuilder</code>解析配置的xml文件,读出参数内容后存入<code>org.apache.ibatis.session.Configuration</code>类中,<code>Configuration</code>类采取单例模式,几乎所有的mybatis配置都会存储在这个单例对象中</li>
+<li>使用<code>Configuration</code>去创建<code>SqlsessionFactory</code>, <code>SqlsessionFactory</code>是一个接口,具体的实现类是<code>org.apache.ibatis.session.DefaultSqlsessionFactory</code> </li>
+</ul>
+</li>
+<li><p>构建<code>Configuration</code>,<code>Configuration</code>有什么作用?</p>
+<ul>
+<li>读入配置文件,包括基础配置xml和映射器xml</li>
+<li>初始化一些基础配置,比如mybatis的别名,一些重要的类对象(插件,映射器,objectfactory工厂,typehandlers)</li>
+<li>提供单例,为后续创建<code>sqlsessionfactory</code>服务,提供配置的参数</li>
+<li>xml==&gt;Configuration==&gt;SqlsessionFactory==&gt;Sqlsession==&gt;Mapper<ul>
+<li>Configuration是通过XMLConfigBuilder去构建的,首先它会读出所有xml配置的信息,然后把他们解析并保存在configuration单例中,它会作如下初始化<ul>
+<li>Properties 全局参数</li>
+<li>typeAlias 别名</li>
+<li>plugins插件</li>
+<li>objectfactory工厂</li>
+<li>objectwrapperfactory对象包装工厂</li>
+<li>reflectionFactory反射工厂</li>
+<li>settings 环境设置</li>
+<li>environments 数据库环境</li>
+<li>databaseIdProvider 数据库标识</li>
+<li>typehandlers类型转换器</li>
+<li>Mappers 映射器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://3.112.15.176:4000/2019/09/14/SpringIOC容器简述/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wangshenkai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gakki-kk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/14/SpringIOC容器简述/" itemprop="url">SpringIOC容器简述</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T13:32:13+00:00">
+                2019-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>SpringIOC容器简述</strong></p>
+<ul>
+<li>SpringIOC容器的设计<ul>
+<li>SpringIOC容器的设计是基于BeanFactory和ApplicationContext两个接口</li>
+<li>BeanFactory是springIOC容器定义的最底层的接口,而applicationContext是其高级接口之一</li>
+<li>BeanFactory接口中包含的抽象方法有<ul>
+<li>getBean</li>
+<li>isSingleton(isProtoType)</li>
+<li>isTypeMatch</li>
+<li>getAlias</li>
+</ul>
+</li>
+<li>接口对应关系<br><code>BeanFactory==&gt;ApplicationContext==&gt;ClassPathXmlApplicationContext</code></li>
+<li>初始化Spring IOC容器的形式<br><code>ApplicationContext act=new ClassPathXmlApplicationContext(&quot;spring-cfg.xml&quot;)</code></li>
+<li>区分SpringIOC中Bean的初始化和定义<ul>
+<li>Bean在SpringIOC中是先定义后初始化和依赖注入的</li>
+<li>SpringIOC中Bean的定义分为三步<ul>
+<li>Resource定位(xml或者是注解定位)</li>
+<li>BeanDefinition载入(将定位到的信息保存在Bean定义中)</li>
+<li>BeanDefinition注册,BeanDefinition的信息发布到SpringIOC容器中</li>
+</ul>
+</li>
+<li>注意:即使将BeanDefinition发布到SpringIOC容器中Bean仍未创建实例(仍未初始化),更没有完成依赖注入</li>
+<li>Bean初始化过程(定义==&gt;初始化==&gt;依赖注入)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://3.112.15.176:4000/2019/09/14/Redis简述/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wangshenkai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gakki-kk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/14/Redis简述/" itemprop="url">Redis简述</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T11:41:30+00:00">
+                2019-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>Redis简述</strong></p>
+<ul>
+<li><p>Redis的性能优越主要是因为</p>
+<ul>
+<li>它是基于ANSIC语言编写的,接近于汇编语言的机器语言,运行速度很快</li>
+<li>redis是基于内存进行io读写,速度比磁盘要快很多</li>
+<li>redis数据库结构只有6种类型,数据结构比较简单,因此规则比较少,而关系型数据库则是范式,完整性,规范性都要考虑,规则比较多,数据处理业务会比较复杂</li>
+</ul>
+</li>
+<li><p>Redis目前主要使用的场景有:</p>
+<ul>
+<li>在javaweb项目中作为缓存来进行使用 <ul>
+<li>缓存常用的数据<ul>
+<li>实际场景中读操作远远大于写操作,redis直接操作内存</li>
+</ul>
+</li>
+<li>需要告诉读写的场合,需要使用它进行快速读写,关键在于数据的一致性和访问控制</li>
+<li>数据库在适用redis作为缓存的时候需要考虑的点<ul>
+<li>业务数据常用吗,命中率如何,如果命中率很低,就没有必要写入缓存</li>
+<li>该业务是读操作多还是写操作多,如果写操作多,也没有必要写入缓存</li>
+<li>业务数据大小如何,如果只有几百兆字节的文件会给缓存带来很大的压力,有没有必要<ul>
+<li>高速读写场景中使用<br>高速读写场景中需要使用异步的方式将数据写入数据库</li>
+<li>数据缓存到redis,在一定的条件下把缓存中的数据写入到数据库</li>
+<li>高并发下的数据安全问题和一致性问题</li>
+<li>有效请求和无效请求</li>
+<li>事务一致性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何在java程序中使用redis</p>
+<ul>
+<li>先下载jedis.jar</li>
+<li>jedis的连接池提供了类redis.clients.jedis.Jedispool使用这个对象需要使用类redis.clients.jedis.Jedispoolconfig对连接池进行配置<code>maxIdel,maxTotal,maxWaitMillts</code></li>
+<li>java(面向对象)==&gt;Redis(字符串型操作)==&gt;Spring的RedisTemplate(序列化字符串)</li>
+<li>使用spring提供的redistemplate之前需要配置spring所提供的连接工厂,在spring-data-redis方案中提供了四种工厂模型<ul>
+<li>JRedisConnectionFactory</li>
+<li>JedisConnectionFactory</li>
+<li>LettuceConnectionFactory</li>
+<li>SrpConnectionFactory<br>这四种工厂都是RediscConnectionFactory接口的实现</li>
+<li>spring中使用redis的时候使用到了序列化器(RedisSerializer)接口</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://3.112.15.176:4000/2019/09/14/微服务设计原则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -812,7 +1354,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -823,7 +1365,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -834,7 +1376,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

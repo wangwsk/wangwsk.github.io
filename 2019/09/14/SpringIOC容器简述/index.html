@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="spring,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gakki-kk">
-<meta property="og:url" content="http://3.112.15.176:4000/tags/微服务/index.html">
+<meta name="description" content="SpringIOC容器简述  SpringIOC容器的设计 SpringIOC容器的设计是基于BeanFactory和ApplicationContext两个接口 BeanFactory是springIOC容器定义的最底层的接口,而applicationContext是其高级接口之一 BeanFactory接口中包含的抽象方法有 getBean isSingleton(isProtoType) i">
+<meta name="keywords" content="spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringIOC容器简述">
+<meta property="og:url" content="http://3.112.15.176:4000/2019/09/14/SpringIOC容器简述/index.html">
 <meta property="og:site_name" content="Gakki-kk">
+<meta property="og:description" content="SpringIOC容器简述  SpringIOC容器的设计 SpringIOC容器的设计是基于BeanFactory和ApplicationContext两个接口 BeanFactory是springIOC容器定义的最底层的接口,而applicationContext是其高级接口之一 BeanFactory接口中包含的抽象方法有 getBean isSingleton(isProtoType) i">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-14T13:32:58.534Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gakki-kk">
+<meta name="twitter:title" content="SpringIOC容器简述">
+<meta name="twitter:description" content="SpringIOC容器简述  SpringIOC容器的设计 SpringIOC容器的设计是基于BeanFactory和ApplicationContext两个接口 BeanFactory是springIOC容器定义的最底层的接口,而applicationContext是其高级接口之一 BeanFactory接口中包含的抽象方法有 getBean isSingleton(isProtoType) i">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://3.112.15.176:4000/tags/微服务/">
+  <link rel="canonical" href="http://3.112.15.176:4000/2019/09/14/SpringIOC容器简述/">
 
 
 
 
 
-  <title>标签: 微服务 | Gakki-kk</title>
+  <title>SpringIOC容器简述 | Gakki-kk</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,52 +271,179 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>微服务<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://3.112.15.176:4000/2019/09/14/SpringIOC容器简述/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wangshenkai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gakki-kk">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/09/14/微服务设计原则/" itemprop="url">
-              
-                <span itemprop="name">微服务设计原则</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">SpringIOC容器简述</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-14T11:06:09+00:00" content="2019-09-14">
-          09-14
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T13:32:13+00:00">
+                2019-09-14
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>SpringIOC容器简述</strong></p>
+<ul>
+<li>SpringIOC容器的设计<ul>
+<li>SpringIOC容器的设计是基于BeanFactory和ApplicationContext两个接口</li>
+<li>BeanFactory是springIOC容器定义的最底层的接口,而applicationContext是其高级接口之一</li>
+<li>BeanFactory接口中包含的抽象方法有<ul>
+<li>getBean</li>
+<li>isSingleton(isProtoType)</li>
+<li>isTypeMatch</li>
+<li>getAlias</li>
+</ul>
+</li>
+<li>接口对应关系<br><code>BeanFactory==&gt;ApplicationContext==&gt;ClassPathXmlApplicationContext</code></li>
+<li>初始化Spring IOC容器的形式<br><code>ApplicationContext act=new ClassPathXmlApplicationContext(&quot;spring-cfg.xml&quot;)</code></li>
+<li>区分SpringIOC中Bean的初始化和定义<ul>
+<li>Bean在SpringIOC中是先定义后初始化和依赖注入的</li>
+<li>SpringIOC中Bean的定义分为三步<ul>
+<li>Resource定位(xml或者是注解定位)</li>
+<li>BeanDefinition载入(将定位到的信息保存在Bean定义中)</li>
+<li>BeanDefinition注册,BeanDefinition的信息发布到SpringIOC容器中</li>
+</ul>
+</li>
+<li>注意:即使将BeanDefinition发布到SpringIOC容器中Bean仍未创建实例(仍未初始化),更没有完成依赖注入</li>
+<li>Bean初始化过程(定义==&gt;初始化==&gt;依赖注入)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring/" rel="tag"># spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/14/Redis简述/" rel="next" title="Redis简述">
+                <i class="fa fa-chevron-left"></i> Redis简述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/14/mybatis简述/" rel="prev" title="mybatis简述">
+                mybatis简述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -319,6 +451,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -540,6 +676,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
