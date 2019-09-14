@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://3.112.15.176:4000/2019/09/13/mybatis框架学习/">
+    <link itemprop="mainEntityOfPage" href="http://3.112.15.176:4000/2019/09/14/设计模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wangshenkai">
@@ -300,7 +300,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/13/mybatis框架学习/" itemprop="url">mybatis框架学习</a></h1>
+                <a class="post-title-link" href="/2019/09/14/设计模式/" itemprop="url">设计模式</a></h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-13T11:35:27+00:00">
-                2019-09-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T08:18:00+00:00">
+                2019-09-14
               </time>
             
 
@@ -322,6 +322,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -352,126 +374,58 @@
       
         
           
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://3.112.15.176:4000/2019/09/13/wsk/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wangshenkai">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gakki-kk">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/13/wsk/" itemprop="url">wsk</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-13T10:20:18+00:00">
-                2019-09-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>hello it me i am taylor swift ,welcome to new york </p>
+            <p><strong>设计模式分类</strong></p>
+<ul>
+<li>创建型模式(creational pattern)<ul>
+<li>简单工厂模式(simple factory)</li>
+<li>工厂方法模式(factory method)</li>
+<li>抽象工厂模式(abstract factory)</li>
+<li>建造者模式(builder)</li>
+<li>原型模式(prototype)</li>
+<li>单例模式(singleton)</li>
+</ul>
+</li>
+<li>结构型模式(structural pattern)<ul>
+<li>适配器模式(adapter)</li>
+<li>桥接模式(bridge)</li>
+<li>组合模式(composite)</li>
+<li>装饰模式(decorator)</li>
+<li>外观模式(facade)</li>
+<li>享元模式(flyweight)</li>
+<li>代理模式(proxy)</li>
+</ul>
+</li>
+<li>行为型模式(behavioral pattern)<ul>
+<li>职责链(chain of responsibility)</li>
+<li>命令模式(command)</li>
+<li>解释器模式(interpreter)</li>
+<li>迭代器模式(iterator)</li>
+<li>中介者模式(mediator)</li>
+<li>备忘录模式(memento)</li>
+<li>观察者模式(observer)</li>
+<li>状态模式(state)</li>
+<li>策略模式(strategy)</li>
+<li>模板方式方法(template method)</li>
+<li>访问者模式(vistor)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><strong>单例模式</strong><ul>
+<li>1 为什么要使用单例模式</li>
+<li>2 为什么不使用全局变量确保一个类只有一个实例</li>
+<li>3 单例模式的实现:<ul>
+<li>饿汉式单例(线程安全)</li>
+<li>懒汉式单例(非线程安全加synchnorized关键字确保线程安全版本)</li>
+<li>懒汉式(双重检查加锁版本)</li>
+<li>懒汉式(登记式静态内部方式)</li>
+<li>饿汉式(枚举方式)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
           
         
@@ -520,7 +474,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://3.112.15.176:4000/2019/09/13/mybatis/">
+    <link itemprop="mainEntityOfPage" href="http://3.112.15.176:4000/2019/09/14/mybatis的基本构成/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wangshenkai">
@@ -539,7 +493,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/13/mybatis/" itemprop="url">mybatis</a></h1>
+                <a class="post-title-link" href="/2019/09/14/mybatis的基本构成/" itemprop="url">mybatis的基本构成</a></h1>
         
 
         <div class="post-meta">
@@ -551,8 +505,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-13T04:35:23+00:00">
-                2019-09-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T07:40:11+00:00">
+                2019-09-14
               </time>
             
 
@@ -592,138 +546,6 @@
         
           
             
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://3.112.15.176:4000/2019/09/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wangshenkai">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gakki-kk">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/12/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-12T12:59:03+00:00">
-                2019-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
           
         
       
@@ -804,12 +626,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
             
 
             
