@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      mybatis简述 | Gakki-kk
+      centos7下防火墙设置 | Gakki-kk
     
   </title>
   <meta name="author" content="Wangshenkai">
@@ -160,7 +160,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《mybatis简述》
+			当前文章&nbsp;:&nbsp;《centos7下防火墙设置》
 		
 	</p>
 
@@ -265,8 +265,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2019/09/14/mybatis简述/" itemprop="url">
-		mybatis简述
+	<a href="/2019/09/20/centos7防火墙配置/" itemprop="url">
+		centos7下防火墙设置
 	</a>
 
 	</div>
@@ -279,9 +279,9 @@
 
 	发布于
 
-	<a href="/2019/09/14/mybatis简述/" itemprop="url">
-		<time datetime="2019-09-14T14:29:15.888Z" itemprop="datePublished">
-	  		2019-09-14
+	<a href="/2019/09/20/centos7防火墙配置/" itemprop="url">
+		<time datetime="2019-09-20T13:28:54.684Z" itemprop="datePublished">
+	  		2019-09-20
 	  </time>
 	</a>
 	&nbsp;
@@ -297,9 +297,9 @@
 
 	更新于
 
-	<a href="/2019/09/14/mybatis简述/" itemprop="url">
-		<time datetime="2019-09-14T14:29:15.888Z" itemprop="dateUpdated">
-	  		2019-09-14
+	<a href="/2019/09/20/centos7防火墙配置/" itemprop="url">
+		<time datetime="2019-09-20T13:28:54.684Z" itemprop="dateUpdated">
+	  		2019-09-20
 	  </time>
 	</a> 
 
@@ -310,8 +310,8 @@
 			<i class="fa fa-tags"></i>
 			
 	
-		<a href="/tags/mybatis/" class=" ">
-			mybatis
+		<a href="/tags/centos7防火墙设置/" class=" ">
+			centos7防火墙设置
 		</a>
 	
 		
@@ -324,89 +324,17 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<p><strong>mybatis简述</strong></p>
+		<p>-1 <strong>查看防火墙状况</strong><br><code>systemctl status firewalld</code><br>-2 <strong>开启防火墙</strong><br><code>systemctl start firewalld.service</code><br>-3 <strong>查看防火墙白名单(已经开放端口)</strong><br><code>firewall-cmd --zone=public --list-ports</code><br>-4 <strong>添加指定端口到防火墙白名单</strong><br><code>firewall-cmd --permanent --zone=public --add-port=port/tcp</code></p>
 <ul>
-<li><p>几个问题</p>
-<ul>
-<li>什么是Java反射,Java反射有几种实现方式?</li>
-<li>什么是动态代理?具体实现动态代理的方式是什么?</li>
-</ul>
-</li>
-<li><p>mybatis的核心组件有哪些?</p>
-<ul>
-<li>SqlSessionFactoryBuilder</li>
-<li>SqlSessionFactory</li>
-<li>SqlSession</li>
-<li>Mapper</li>
-</ul>
-</li>
-<li><p>怎样实现mybatis的映射器</p>
-<ul>
-<li>基于注解实现</li>
-<li>xml实现</li>
-</ul>
-</li>
-<li><p>mybatis的生命周期是怎样的?</p>
-</li>
-<li><p>mybatis配置中需要或者可以配置哪些属性</p>
-</li>
-<li><p>什么是mybatis的级联</p>
-</li>
-<li><p>什么是mybatis的缓存</p>
-<ul>
-<li>开启一级缓存<code>sqlsession</code>,在当前<code>sqlsession</code>中,执行相同查询不要要再次执行sql获取结果集,不同sqlsession中仍然需要</li>
-<li>开启二级缓存<code>sqlsessionfactory</code>,同属于一个<code>sqlsessionfactory</code>的<code>sqlsession</code>执行查询中不需要再次执行sql获取结果集,需要注意,一级缓存默认开启,二级缓存打开则需要<code>&lt;cached&gt;</code>进行配置,一级缓存不需要pojo实现系列化接口,二级缓存需要pojo实现序列化接口</li>
-</ul>
-</li>
-<li><p>怎样开启自定义缓存</p>
-<ul>
-<li>开启自定义缓存,实现类需要实现接口mybatis的接口<code>org.apache.ibatis.cacheCache.Cache</code>接口<ul>
-<li>获取缓存 <code>String getId()</code></li>
-<li>保存对象 <code>void putObject(Object key,Object value)</code></li>
-<li>获取缓存数据 <code>Object getObject()</code></li>
-<li>删除缓存key为键 <code>Object removeObject(Object key)</code></li>
-<li>清除缓存 <code>void clear()</code></li>
-<li>获取读写锁,需要考虑线程场景 <code>getReadWriteLock()</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>mybatis框架的运行过程是怎样的</p>
-<ul>
-<li>读取配置文件缓存到<code>configuration</code>对象中,用来创建<code>SqlSessionFactory</code></li>
-<li><code>sqlsession</code>的执行过程</li>
-</ul>
-</li>
-<li><p>SqlsessionFactoryBuilder是怎样构建<code>SqlsessionFactory</code>的</p>
-<ul>
-<li>通过<code>org.apache.ibatis.builder.xml.XmlConfigBuilder</code>解析配置的xml文件,读出参数内容后存入<code>org.apache.ibatis.session.Configuration</code>类中,<code>Configuration</code>类采取单例模式,几乎所有的mybatis配置都会存储在这个单例对象中</li>
-<li>使用<code>Configuration</code>去创建<code>SqlsessionFactory</code>, <code>SqlsessionFactory</code>是一个接口,具体的实现类是<code>org.apache.ibatis.session.DefaultSqlsessionFactory</code> </li>
-</ul>
-</li>
-<li><p>构建<code>Configuration</code>,<code>Configuration</code>有什么作用?</p>
-<ul>
-<li>读入配置文件,包括基础配置xml和映射器xml</li>
-<li>初始化一些基础配置,比如mybatis的别名,一些重要的类对象(插件,映射器,objectfactory工厂,typehandlers)</li>
-<li>提供单例,为后续创建<code>sqlsessionfactory</code>服务,提供配置的参数</li>
-<li>xml==&gt;Configuration==&gt;SqlsessionFactory==&gt;Sqlsession==&gt;Mapper<ul>
-<li>Configuration是通过XMLConfigBuilder去构建的,首先它会读出所有xml配置的信息,然后把他们解析并保存在configuration单例中,它会作如下初始化<ul>
-<li>Properties 全局参数</li>
-<li>typeAlias 别名</li>
-<li>plugins插件</li>
-<li>objectfactory工厂</li>
-<li>objectwrapperfactory对象包装工厂</li>
-<li>reflectionFactory反射工厂</li>
-<li>settings 环境设置</li>
-<li>environments 数据库环境</li>
-<li>databaseIdProvider 数据库标识</li>
-<li>typehandlers类型转换器</li>
-<li>Mappers 映射器</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>zone #作用域</li>
+<li>add-port=8484/tcp #添加端口，格式为：端口/通讯协议</li>
+<li>permanent #永久生效，没有此参数重启后失效`</li>
+<li>添加白名单之后需要重启防火墙</li>
+<li>删除出白名单 <code>firewall-cmd --zone=public --remove-port=port/tcp --permanent</code><br>-5 <strong>重启防火墙命令</strong><br><code>firewall-cmd --reload</code><br>-6 <strong>其他防火墙命令</strong></li>
+<li><code>firewall-cmd --state</code> || <code>systemctl status firewalld</code> 查看防火墙状态</li>
+<li><code>systemctl disable firewalld</code> 停止防火墙</li>
+<li><code>systemctl stop firewalld</code> 禁用防火墙</li>
+<li><code>systemctl start firewalld</code> 启动防火墙</li>
 </ul>
 	
 	</div>
@@ -426,12 +354,8 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2019/09/20/centos7防火墙配置/" title="centos7下防火墙设置" rel="prev">
-				&laquo;上一篇
-			</a>
 		
-		
-			<a href="/2019/09/14/SpringIOC容器简述/" title="SpringIOC容器简述" rel="next">
+			<a href="/2019/09/14/mybatis简述/" title="mybatis简述" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -452,22 +376,33 @@
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/09/20/centos7防火墙配置/" title="centos7下防火墙设置">
-								centos7下防火墙设置			
+							<a class="relate-post-title" href="/2019/09/14/mybatis简述/" title="mybatis简述">
+								mybatis简述			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								九月 20日, 2019				
+								九月 14日, 2019				
 							</p>
 							<p class="relate-post-content">
-								-1 查看防火墙状况systemctl status firewalld-2 开启防火墙systemctl start firewalld.service-3 查看防火墙白名单(已经开放端口)firewall-cmd --zone=p...
+								mybatis简述
+
+几个问题
+
+什么是Java反射,Java反射有几种实现方式?
+什么是动态代理?具体实现动态代理的方式是什么?
+
+
+mybatis的核心组件有哪些?
+
+SqlSessionFactoryBuilder
+SqlSes...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/09/20/centos7防火墙配置/" title="centos7下防火墙设置">				
+							<a href="/2019/09/14/mybatis简述/" title="mybatis简述">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="centos7下防火墙设置"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="mybatis简述"/>
 							</a>
 						</div>
 					</li>											
